@@ -14,7 +14,7 @@ To write a python program to implement Breadth first Search.
 8.   Stop the program.
 ### Program:
 
-```python
+```
 graph = {
     '2' : ['3','4'] ,
     '3' : ['5'] ,
@@ -52,7 +52,8 @@ bfs(visited,'2',graph)
 
 ### Output:
 
-![Uploading image.png…]()
+![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/806e7f87-bf06-4c1a-9fc1-49fb95d5534d)
+
 
 
 ### Result:
