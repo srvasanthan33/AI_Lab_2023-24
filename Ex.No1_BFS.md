@@ -14,6 +14,7 @@ To write a python program to implement Breadth first Search.
 8.   Stop the program.
 ### Program:
 
+```python
 graph = {
     '2' : ['3','4'] ,
     '3' : ['5'] ,
@@ -29,8 +30,7 @@ queue = []
 
 def bfs(visited,node,graph):
     visited.append(node)
-    queue.append(node)
-
+    queue.append(node) 
     while queue:
         m = queue.pop(0)
         print(m)
@@ -47,7 +47,7 @@ bfs(visited,'2',graph)
 
 
 
-
+```
 
 
 ### Output:
