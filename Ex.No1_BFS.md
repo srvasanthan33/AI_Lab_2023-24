@@ -14,7 +14,33 @@ To write a python program to implement Breadth first Search.
 8.   Stop the program.
 ### Program:
 
+graph = {
+    '2' : ['3','4'] ,
+    '3' : ['5'] ,
+    '4' : ['6','7'] ,
+    '6' : [] ,
+    '5' : ['6'] ,
+    '7' : ['8'] ,
+    '8' : []
+}
 
+visited = []
+queue = []
+
+def bfs(visited,node,graph):
+    visited.append(node)
+    queue.append(node)
+
+    while queue:
+        m = queue.pop(0)
+        print(m)
+        for neighbour in graph[m]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+
+print("Bfs order is ")
+bfs(visited,'2',graph)
 
 
 
@@ -26,6 +52,7 @@ To write a python program to implement Breadth first Search.
 
 ### Output:
 
+![Uploading image.png…]()
 
 
 ### Result:
