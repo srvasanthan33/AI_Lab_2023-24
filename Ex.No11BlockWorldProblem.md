@@ -18,66 +18,51 @@ Step 10 : Obtain the plan for given problem.<br>
 ### Program:
 
 ```
-(define (domain monkey)	       
-  (:requirements :strips)
-   (:constants monkey box knife bananas glass waterfountain)
-   (:predicates (location ?x)
-	       (on-floor)
-	       (at ?m ?x)
-	       (hasknife)
-	       (onbox ?x)
-	       (hasbananas)
-	       (hasglass)
-	       (haswater))
-   ;; movement and climbing
-  (:action GO-TO
-	     :parameters (?x ?y)
-	     :precondition (and (location ?x) (location ?y) (on-floor) (at monkey ?y))
-	     :effect (and (at monkey ?x) (not (at monkey ?y))))
-   (:action CLIMB
-	     :parameters (?x)
-	     :precondition (and (location ?x) (at box ?x) (at monkey ?x))
-	     :effect (and (onbox ?x) (not (on-floor))))
-   (:action PUSH-BOX
-	     :parameters (?x ?y)
-	     :precondition (and (location ?x) (location ?y) (at box ?y) (at monkey ?y) 
-				 (on-floor))
-	     :effect (and (at monkey ?x) (not (at monkey ?y))
-			   (at box ?x)    (not (at box ?y))))
-  ;; getting bananas
-  (:action GET-KNIFE
-	     :parameters (?y)
-	     :precondition (and (location ?y) (at knife ?y) (at monkey ?y))
-	     :effect (and (hasknife) (not (at knife ?y))))
-  (:action GRAB-BANANAS
-	     :parameters (?y)
-	     :precondition (and (location ?y) (hasknife) 
-                                 (at bananas ?y) (onbox ?y))
-	     :effect (hasbananas))
-  ;; getting water
-  (:action PICKGLASS
-	     :parameters (?y)
-	     :precondition (and (location ?y) (at glass ?y) (at monkey ?y))
-	     :effect (and (hasglass) (not (at glass ?y))))
-  (:action GETWATER
-	     :parameters (?y)
-	     :precondition (and (location ?y) (hasglass)
-				 (at waterfountain ?y)
-				 (at monkey ?y)
-				 (onbox ?y))
-	     :effect (haswater)))
+(define (domain blocksworld)
+(:requirements :strips :equality)
+(:predicates (clear ?x)
+             (on-table ?x)
+             (arm-empty)
+             (holding ?x)
+             (on ?x ?y))
+(:action pickup
+  :parameters (?ob)
+  :precondition (and (clear ?ob) (on-table ?ob) (arm-empty))
+  :effect (and (holding ?ob) (not (clear ?ob)) (not (on-table ?ob)) 
+               (not (arm-empty))))
+(:action putdown
+  :parameters  (?ob)
+  :precondition (and (holding ?ob))
+  :effect (and (clear ?ob) (arm-empty) (on-table ?ob) 
+               (not (holding ?ob))))
+(:action stack
+  :parameters  (?ob ?underob)
+  :precondition (and  (clear ?underob) (holding ?ob))
+  :effect (and (arm-empty) (clear ?ob) (on ?ob ?underob)
+               (not (clear ?underob)) (not (holding ?ob))))
+(:action unstack
+  :parameters  (?ob ?underob)
+  :precondition (and (on ?ob ?underob) (clear ?ob) (arm-empty))
+  :effect (and (holding ?ob) (clear ?underob)
+               (not (on ?ob ?underob)) (not (clear ?ob)) (not (arm-empty)))))
 ```
 
 
-
 ### Input 
-![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/c734b94f-b852-4e56-95c2-3120cb9af913)
+```
+(define (problem pb1)
+   (:domain blocksworld)
+   (:objects a b)
+   (:init (on-table a) (on-table b)  (clear a)  (clear b) (arm-empty))
+   (:goal (and (on a b))))
+```
 
 
 
 ### Output/Plan:
 
-![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/1bc97556-30de-415e-91f7-51de4bf36895)
+![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/2375db87-0d4b-4a53-90fd-2cc7ada768fe)
+
 
 
 ### Result:
