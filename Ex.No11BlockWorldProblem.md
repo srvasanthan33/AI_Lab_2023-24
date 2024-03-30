@@ -71,7 +71,8 @@ Step 10 : Obtain the plan for given problem.<br>
 
 
 ### Input 
-![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/0ecd2f69-c726-4430-a1df-b77fdf92aef5)
+![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/c734b94f-b852-4e56-95c2-3120cb9af913)
+
 
 
 ### Output/Plan:
