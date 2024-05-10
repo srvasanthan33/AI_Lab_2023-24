@@ -126,6 +126,14 @@ print('Accuracy score on Test Data : ', test_data_accuracy)
 
 
 ### Output:
+```
+
+X_test_prediction = model.predict(X_test)
+test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
+
+print('Accuracy score on Test Data : ', test_data_accuracy)
+```
+![image](https://github.com/srvasanthan33/AI_Lab_2023-24/assets/102546622/37743677-4338-42a4-97ba-912607a11778)
 
 
 ### Result:
